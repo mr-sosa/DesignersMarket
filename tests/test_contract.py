@@ -2,6 +2,7 @@
 import unittest
 
 from contracting.client import ContractingClient
+
 client = ContractingClient()
 
 with open('../my_token.py') as f:
