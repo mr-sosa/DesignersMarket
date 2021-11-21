@@ -2,13 +2,15 @@
 
 #Smart Contract State
 S = Hash(default_value=0)
+A = Hash(default_value=False)
 
 #This runs when our contract is created on the blockchain, and never again.
 @construct
 def seed():
     #Give yourself 50 tokens!
-    S['me'] = 50
-
+    S['empresa'] = 0
+    A['empresa'] = False
+    A['disenador'] = False
 
 # This method will be exported so our users can call it
 @export
@@ -30,3 +32,16 @@ def transfer(amount: int, receiver: str):
 
     # add tokens to the receiver's balance
     S[receiver] += amount
+
+@export
+def recarga(amount:int):
+    sender = ctx.caller
+    S[sender] += amount
+
+@export
+def aceptarE():
+    A['empresa'] =True
+
+@export
+def aceptarD():
+    A['disenador'] =True
