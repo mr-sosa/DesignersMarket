@@ -127,12 +127,11 @@ async def submit_transaction(request):
     k = client.raw_driver.make_key(contract=contract_name, variable='A', args=['disenador'])
     valueD = client.raw_driver.get(k)
 
-    if(method_name=='transfer' and valueE==False):
-        return response.json({'error': 'La empresa no ha aceptado'}, status=404)
-
     if (method_name == 'transfer' and valueD == False):
         return response.json({'error': 'El disenador no ha aceptado'}, status=404)
 
+    """if (method_name == 'transfer' and valueE == False):
+            return response.json({'error': 'La empresa no ha aceptado'}, status=404)"""
     # Get reference to the contract method to be called
     method = getattr(contract, method_name)
 
